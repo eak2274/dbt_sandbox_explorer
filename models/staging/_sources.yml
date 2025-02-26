@@ -1,6 +1,6 @@
 sources:
   - name: jaffle_shop
-    database: raw
+    database: dbt-bigquery-setup-432912
     schema: jaffle_shop
     description: E-commerce data
     tables:

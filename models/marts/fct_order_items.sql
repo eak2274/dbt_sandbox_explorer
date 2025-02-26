@@ -1,19 +1,21 @@
-with orders as (
-    select * from {{ ref('int_orders') }}
+WITH orders AS (
+    SELECT * 
+    FROM {{ ref('int_orders') }}
 ),
 
-order_items as (
-    select * from {{ ref('stg_order_items') }}
+order_items AS (
+    SELECT * 
+    FROM {{ ref('stg_order_items') }}
 ),
 
-joined as (
-    select 
+joined AS (
+    SELECT 
         order_items.*,
-        orders.* exclude (order_id)
-        
-    from orders 
-        inner join order_items 
-            on orders.order_id = order_items.order_id
+        orders.* EXCEPT (order_id)
+    FROM orders 
+    INNER JOIN order_items 
+    ON orders.order_id = order_items.order_id
 )
 
-select * from joined
+SELECT * 
+FROM joined
